@@ -2,7 +2,9 @@ import style from "./Home.module.css"
 
 function Home() {
   return (
-    <div>Home</div>
+    <div className={style.Home}>
+      <p>Seja-Bem Vindo ao ResenhaPOP!!</p>
+    </div>
   )
 }
 
