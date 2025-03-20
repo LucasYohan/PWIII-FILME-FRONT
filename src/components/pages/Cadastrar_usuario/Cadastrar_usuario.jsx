@@ -21,8 +21,6 @@ function Cadastrar_usuario() {
     alert("O usuário foi cadastrado com sucesso!");
   }
 
-
-
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={submit}>
