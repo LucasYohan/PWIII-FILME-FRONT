@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import Container from "./components/layout/Container/Container";
 import Home from "./components/pages/Home/Home";
 import Navbar from "./components/layout/Navbar/Navbar";
-import ListarFilme from "./components/pages/Listar_filme/ListarFilme";
-import CadastrarFilme from "./components/pages/Cadastrar_filme/CadastrarFilme";
-import CadastrarUsuario from "./components/pages/Cadastrar_usuario/Cadastrar_usuario";
-import Login from "./components/pages/Login/Login";
+import ListarFilme from "./components/pages/Filmes/Listar_filme/ListarFilme";
+import CadastrarFilme from "./components/pages/Filmes/Cadastrar_filme/CadastrarFilme";
+import CadastrarUsuario from "./components/pages/Usuarios/Cadastrar_usuario/Cadastrar_usuario";
+import Login from "./components/pages/Usuarios/Login/Login";
 
 function App() {
   return (

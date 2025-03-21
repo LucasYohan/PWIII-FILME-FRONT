@@ -1,6 +1,12 @@
 .Home {
     height: 300px;
-    width: 300px;
+    width: 550px;
     background-color: #5bbbcc;
     margin: auto;
+    border-radius: 5px;
+    justify-items: center;
+}
+
+.Texto {
+    margin-top: 85px;
 }
