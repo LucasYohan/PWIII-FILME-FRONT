@@ -16,7 +16,7 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/Login', {
+            const response = await axios.post('/login', {
                 name,
                 password,
             });
@@ -41,22 +41,19 @@ function Login() {
 
     return (
         <div>
-            <div>
-                <div>
-                    <div>
-                        <form onSubmit={handleLogin}> 
-                            <p>Usuário:</p>
-                            <input type="text" placeholder="Digite seu nome de usuario" value={name} onChange={(e) => setName(e.target.value)} />
-                            <p>Senha:</p>
-                            <input type={typePassword} placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)}/>
-                            {passwordV ? <VisiblePassword className={style.icon} onClick={passwordInvisible} /> : <HiddenPassword className={style.icon} onClick={passwordVisible} />}
-                            <div className={style.buttonLogin}>
-                                <button type="submit">Login</button>
-                            </div>
-                       </form>
-                    </div>
+            <form onSubmit={handleLogin}>
+                <p> Usuarios:</p>
+                <input type="text" placeholder="Digite seu nome de usuario" value={name} onChange={(e) => setName(e.target.value)} />
+                <p>Senha:</p>
+                <input type={typePassword} placeholder="Digite sua senha" value={password} onChange={(e) => setPassword(e.target.value)} />
+                {passwordV ? <VisiblePassword className={style.icon} onClick={passwordInvisible} /> : <HiddenPassword className={style.icon} onClick={passwordVisible} />}
+                <div className={style.buttonLogin}>
+                    <button type="submit">Login</button>
                 </div>
-            </div>
+            </form>
+            <Link to="/cadastrar_usuario">
+                <button>cadastrar_usuario</button>
+            </Link>
         </div>
     )
 

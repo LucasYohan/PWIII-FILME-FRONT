@@ -1,8 +1,16 @@
 import style from "./CadastrarFilme.module.css"
+import { useState } from "react";
 
 function CadastrarFilme() {
   return (
-    <div>CadastrarFilme</div>
+    const [cadFilme, setCadFilme] = useState({
+      id_movie: "",
+      sobrenome: "",
+      nome_usuario: "",
+      email: "",
+      senha: "",
+      telefone: "",
+    });
   )
 }
 

@@ -23,7 +23,7 @@ function MainLayout() {
     <Container>
       {!hiddenNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
-        <Route path="/" element={<Navigate to="cadastrar_usuario" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastrar_usuario" element={<CadastrarUsuario />} />
         <Route path="/home" element={<Home />} />
