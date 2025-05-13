@@ -1,5 +1,4 @@
 import style from "./Home.module.css"
-import NavBar from "../../layout/Navbar/Navbar"
 
 function Home() {
   return (

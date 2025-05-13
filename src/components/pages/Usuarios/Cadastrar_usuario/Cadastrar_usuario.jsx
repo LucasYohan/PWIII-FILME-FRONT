@@ -1,35 +1,50 @@
 import style from "./Cadastrar_usuario.module.css";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Cadastrar_usuario() {
+
+  const navigate = useNavigate()
+
   const [cadsUser, setCadsUser] = useState({
-    nome: "",
-    sobrenome: "",
-    nome_usuario: "",
+    name: "",
+    surname: "",
+    username: "",
     email: "",
-    senha: "",
-    telefone: "",
+    password: "",
+    telephone: "",
   });
 
   function handleChange(e) {
     setCadsUser({ ...cadsUser, [e.target.name]: e.target.value });
   }
 
-  function submit(event) {
-    event.preventDefault();
-    console.log("Dados enviados:", cadsUser);
-    alert("O usuário foi cadastrado com sucesso!");
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3333/Cadastrar_usuario/Post", cadsUser, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      alert("Usuário cadastrado com sucesso!");
+      navigate("/login");
+    } catch (error) {
+      console.error("Erro ao cadastrar:", error.response?.data || error.message);
+    }
+  };
+
 
   return (
     <div className={style.container}>
-      <form className={style.form} onSubmit={submit}>
-        
+      <form className={style.form} onSubmit={handleSubmit}>
+
         <div className={style.inputGroup}>
           <label className={style.label}>Nome:</label>
           <input
             className={style.input}
-            name="nome"
+            name="name"
             placeholder="Digite Nome"
             value={cadsUser.nome}
             onChange={handleChange}
@@ -40,9 +55,9 @@ function Cadastrar_usuario() {
           <label className={style.label}>Sobrenome:</label>
           <input
             className={style.input}
-            name="sobrenome"
-            placeholder="Digite Sobrenome"
-            value={cadsUser.sobrenome}
+            name="surname"
+            placeholder="Digite seu sobrenome"
+            value={cadsUser.surname}
             onChange={handleChange}
           />
         </div>
@@ -51,9 +66,9 @@ function Cadastrar_usuario() {
           <label className={style.label}>Nome de usuário:</label>
           <input
             className={style.input}
-            name="nome_usuario"
+            name="username"
             placeholder="Digite Nome de usuário"
-            value={cadsUser.nome_usuario}
+            value={cadsUser.username}
             onChange={handleChange}
           />
         </div>
@@ -74,10 +89,10 @@ function Cadastrar_usuario() {
           <label className={style.label}>Senha:</label>
           <input
             className={style.input}
-            name="senha"
+            name="password"
             type="password"
             placeholder="Digite Senha"
-            value={cadsUser.senha}
+            value={cadsUser.password}
             onChange={handleChange}
           />
         </div>
@@ -86,9 +101,9 @@ function Cadastrar_usuario() {
           <label className={style.label}>Telefone:</label>
           <input
             className={style.input}
-            name="telefone"
+            name="telephone"
             placeholder="Digite Telefone"
-            value={cadsUser.telefone}
+            value={cadsUser.telephone}
             onChange={handleChange}
           />
         </div>

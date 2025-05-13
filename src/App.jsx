@@ -11,10 +11,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/cadastrar_usuario" element={<CadastrarUsuario />} />
+        <Route path="/Cadastrar_usuario" element={<CadastrarUsuario />} />
         <Route path="/home" element={<Home />} />
         <Route path="/listar_filme" element={<ListarFilme />} />
-        <Route path="/cadastrar_filme" element={<CadastrarFilme />} />
+        <Route path="/Cadastrar_filme" element={<CadastrarFilme />} />
       </Routes>
     </BrowserRouter>
   );

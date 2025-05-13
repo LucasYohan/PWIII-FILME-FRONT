@@ -6,22 +6,21 @@ import { FaEye as VisiblePassword } from "react-icons/fa";
 import { FaEyeSlash as HiddenPassword } from "react-icons/fa6";
 
 function Login() {
-    const [name, setName] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate();
+    const [user, setUser] = useState({
+        username: "",
+        password: "",
+    });
     const [passwordV, setPasswordV] = useState(false);
     const [typePassword, setTypePassword] = useState('password');
+    const navigate = useNavigate();
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/login', {
-                name,
-                password,
-            });
-            localStorage.setItem('token', response.data.token);
+            const response = await axios.post('http://localhost:3333/login', user);
             alert('Login realizado com sucesso!');
-            navigate('/menu');
+            navigate('/home');
         } catch (error) {
             console.error(error);
             alert('Usuario ou senha incorretos');
@@ -45,15 +44,15 @@ function Login() {
                 <input
                     type="text"
                     placeholder="Digite seu nome de usuario"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={user.username}
+                    onChange={(e) => setUser({ ...user, username: e.target.value })}
                 />
                 <p>Senha:</p>
                 <input
                     type={typePassword}
                     placeholder="Digite sua senha"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={user.password}
+                    onChange={(e) => setUser({ ...user, password: e.target.value })}
                 />
                 {passwordV ? (
                     <VisiblePassword className={style.icon} onClick={passwordInvisible} />
@@ -62,10 +61,11 @@ function Login() {
                 )}
                 <div className={style.buttonLogin}>
                     <button className={style.botao} type="submit">Login</button>
-                    <Link to="/cadastrar_usuario">
-                <button className={style.botao_cadastro}>Cadastrar Usuário</button>
-            </Link>
+
                 </div>
+                <Link to="/Cadastrar_usuario">
+                    <button className={style.botao_cadastro}>Cadastrar Usuário</button>
+                </Link>
             </form>
         </div>
     );
