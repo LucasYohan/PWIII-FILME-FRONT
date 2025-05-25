@@ -33,7 +33,7 @@ function ListarFilmes() {
           onClick={() => irParaDetalhes(filme)}
         >
           <img
-            src={require(`../../../assets/${filme.imagem}`)}
+            src={`/assets/${filme.imagem}`}  
             alt={filme.name_movie}
             className={style.thumbnail}
           />
@@ -42,7 +42,6 @@ function ListarFilmes() {
 
           <button>Editar</button>
           <button>Excluir</button>
-
         </div>
       ))}
     </div>
