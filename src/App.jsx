@@ -3,6 +3,10 @@ import Home from "./components/pages/Home/Home";
 import CadastrarUsuario from "./components/pages/Usuarios/Cadastrar_usuario/Cadastrar_usuario";
 import Login from "./components/pages/Usuarios/Login/Login";
 import ListarFilmes from "./components/pages/listarFilmes/listarFilmes";
+import EditarFilme from "./components/pages/EditarFilme/EditarFilme";
+import CadastrarFilme from "./components/pages/CadastrarFilme/CadastrarFilme";
+
+
 
 import FilmeDetalhes from "./components/pages/FilmesDetalhes/filmeDetalhes";
 
@@ -16,6 +20,10 @@ function App() {
         <Route path="/Home" element={<Home />} />
         <Route path="/listarFilmes" element={<ListarFilmes />} />
         <Route path="/filme/:id" element={<FilmeDetalhes />} />
+        <Route path="/filme/editar/:id" element={<EditarFilme />} />
+        <Route path="/cadastrarFilme" element={<CadastrarFilme />} />
+        
+
       </Routes>
     </BrowserRouter>
   );
