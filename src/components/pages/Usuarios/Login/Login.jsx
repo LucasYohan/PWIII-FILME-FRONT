@@ -1,9 +1,9 @@
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import style from './Login.module.css';
 import { FaEye as VisiblePassword } from "react-icons/fa";
 import { FaEyeSlash as HiddenPassword } from "react-icons/fa6";
+import api from '../../../../axiosConfig';
 
 function Login() {
 
@@ -13,14 +13,19 @@ function Login() {
     const [typePassword, setTypePassword] = useState('password');
     const navigate = useNavigate();
 
-
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3333/login', {
+            const response = await api.post('/login', {
                 username,
                 password
             });
+
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('typeUser', response.data.typeUser);
+            localStorage.setItem('username', response.data.username);
+            localStorage.setItem('id_user', response.data.id_user);
+
             alert('Login realizado com sucesso!');
             console.log('Login realizado com sucesso!')
             navigate('/Home');

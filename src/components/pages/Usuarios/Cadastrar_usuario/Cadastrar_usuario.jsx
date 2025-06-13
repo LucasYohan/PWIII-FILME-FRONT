@@ -1,7 +1,7 @@
 import style from "./Cadastrar_usuario.module.css";
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../../../../axiosConfig";
 
 function Cadastrar_usuario() {
 
@@ -23,7 +23,7 @@ function Cadastrar_usuario() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3333/Cadastrar_usuario/Post", cadsUser, {
+      await api.post("http://localhost:3333/Cadastrar_usuario/Post", cadsUser, {
         headers: {
           'Content-Type': 'application/json'
         }

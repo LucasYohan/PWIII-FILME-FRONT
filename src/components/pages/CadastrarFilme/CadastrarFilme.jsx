@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import styles from './CadastrarFilme.module.css';
+import api from "../../../axiosConfig";
 
 
 function CadastrarFilme() {
@@ -26,7 +26,7 @@ function CadastrarFilme() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3333/filmes", filme);
+      await api.post("http://localhost:3333/filmes", filme);
       alert("Filme cadastrado com sucesso!");
       navigate("/listarFilmes");
     } catch (error) {

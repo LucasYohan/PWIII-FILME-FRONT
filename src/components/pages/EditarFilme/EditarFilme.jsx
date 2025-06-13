@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import styles from './EditarFilme.module.css';
+import api from "../../../axiosConfig";
+import { FaArrowLeft } from "react-icons/fa";
 
 function EditarFilme() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ function EditarFilme() {
   useEffect(() => {
     async function fetchFilme() {
       try {
-        const res = await axios.get(`http://localhost:3333/filmes/${id}`);
+        const res = await api.get(`http://localhost:3333/filmes/${id}`);
         setFilme(res.data);
       } catch (error) {
         console.error("Erro ao carregar filme:", error);
@@ -38,8 +39,8 @@ function EditarFilme() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:3333/filmes/${id}`, filme);
-      alert("Filme atualizado com sucesso!");
+      await api.put(`http://localhost:3333/filmes/${id}`, filme);
+      alert("Film'e atualizado com sucesso!");
       navigate("/listarFilmes");
     } catch (error) {
       console.error("Erro ao atualizar filme:", error);
@@ -48,90 +49,117 @@ function EditarFilme() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <label>Nome do Filme:</label>
-      <input
-        name="name_movie"
-        value={filme.name_movie}
-        onChange={handleChange}
-        required
-      />
+    <>
 
-      <label>Diretor:</label>
-      <input
-        name="director"
-        value={filme.director}
-        onChange={handleChange}
-        required
-      />
+      <div style={{ padding: '20px' }}>
+        <button
+          onClick={() => {
+            navigate('/listarFilmes');
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '10px 16px',
+            backgroundColor: '#dc3545',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            fontWeight: 'bold'
+          }}
+        >
+          <FaArrowLeft />
+          Sair
+        </button>
+      </div>
 
-      <label>Data de Lançamento:</label>
-      <input
-        type="date"
-        name="release_date"
-        value={filme.release_date ? filme.release_date.slice(0, 10) : ""}
-        onChange={handleChange}
-        required
-      />
 
-      <label>Gênero:</label>
-      <select
-        name="gender_movie"
-        value={filme.gender_movie}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Selecione</option>
-        <option value="ação">Ação</option>
-        <option value="comédia">Comédia</option>
-        <option value="drama">Drama</option>
-        <option value="terror">Terror</option>
-        <option value="suspense">Suspense</option>
-        <option value="ficção_cientifica">Ficção Científica</option>
-      </select>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <label>Nome do Filme:</label>
+        <input
+          name="name_movie"
+          value={filme.name_movie}
+          onChange={handleChange}
+          required
+        />
 
-      <label>Faixa Etária:</label>
-      <select
-        name="age_range"
-        value={filme.age_range}
-        onChange={handleChange}
-        required
-      >
-        <option value="">Selecione</option>
-        <option value="livre">Livre</option>
-        <option value="10">10</option>
-        <option value="12">12</option>
-        <option value="14">14</option>
-        <option value="16">16</option>
-        <option value="18">18</option>
-      </select>
+        <label>Diretor:</label>
+        <input
+          name="director"
+          value={filme.director}
+          onChange={handleChange}
+          required
+        />
 
-      <label>Ator Principal:</label>
-      <input
-        name="main_actor"
-        value={filme.main_actor}
-        onChange={handleChange}
-        required
-      />
+        <label>Data de Lançamento:</label>
+        <input
+          type="date"
+          name="release_date"
+          value={filme.release_date ? filme.release_date.slice(0, 10) : ""}
+          onChange={handleChange}
+          required
+        />
 
-      <label>Sinopse:</label>
-      <textarea
-        name="synopsis"
-        value={filme.synopsis}
-        onChange={handleChange}
-        required
-      />
+        <label>Gênero:</label>
+        <select
+          name="gender_movie"
+          value={filme.gender_movie}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Selecione</option>
+          <option value="ação">Ação</option>
+          <option value="comédia">Comédia</option>
+          <option value="drama">Drama</option>
+          <option value="terror">Terror</option>
+          <option value="suspense">Suspense</option>
+          <option value="ficção_cientifica">Ficção Científica</option>
+        </select>
 
-      <label>Imagem (nome do arquivo):</label>
-      <input
-        name="imagem"
-        value={filme.imagem}
-        onChange={handleChange}
-        required
-      />
+        <label>Faixa Etária:</label>
+        <select
+          name="age_range"
+          value={filme.age_range}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Selecione</option>
+          <option value="livre">Livre</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+          <option value="14">14</option>
+          <option value="16">16</option>
+          <option value="18">18</option>
+        </select>
 
-      <button type="submit">Salvar</button>
-    </form>
+        <label>Ator Principal:</label>
+        <input
+          name="main_actor"
+          value={filme.main_actor}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Sinopse:</label>
+        <textarea
+          name="synopsis"
+          value={filme.synopsis}
+          onChange={handleChange}
+          required
+        />
+
+        <label>Imagem (nome do arquivo):</label>
+        <input
+          name="imagem"
+          value={filme.imagem}
+          onChange={handleChange}
+          required
+        />
+
+        <button type="submit">Salvar</button>
+      </form>
+    </>
   );
 }
 

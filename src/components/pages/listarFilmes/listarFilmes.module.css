@@ -30,3 +30,40 @@
     font-weight: bold;
     font-size: 16px;
 }
+
+.card button {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.card button:active {
+    background-color: #004494;
+    transform: translateY(0);
+}
+
+.botaoAdicionar {
+    background-color: #28a745;
+}
+
+.botaoAdicionar:hover {
+    background-color: #218838;
+}
+
+.botaoAdicionar:active {
+    background-color: #1e7e34;
+}
